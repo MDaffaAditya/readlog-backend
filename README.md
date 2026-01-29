@@ -198,9 +198,7 @@ Frontend yang diizinkan:
 
 Support untuk:
 
-* React
-* Next.js
-* Frontend SPA lainnya
+* Nuxt JS
 
 ---
 
