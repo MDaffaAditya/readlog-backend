@@ -15,7 +15,6 @@ class Comic(models.Model):
         ("manga", "Manga"),
         ("manhwa", "Manhwa"),
         ("manhua", "Manhua"),
-        ("webtoon", "Webtoon"),
         ("comic", "Comic"),
     ]
 

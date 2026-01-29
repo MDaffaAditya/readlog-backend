@@ -14,6 +14,7 @@ from .filters import ComicFilter, NovelFilter
 from rest_framework.views import APIView
 from reviews.models import Review
 
+# Stats View
 class StatsView(APIView):
     def get(self, request):
         data = {
@@ -24,12 +25,14 @@ class StatsView(APIView):
         }
         return Response(data)
 
+# Genre View
 class GenreViewSet(viewsets.ModelViewSet):
     queryset = Genre.objects.all().order_by('name')
     serializer_class = GenreSerializer
     permission_classes = [IsAdminOrReadOnly]
     pagination_class = None 
 
+# Base untuk Comic dan Novel ViewSet
 class BaseContentViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
@@ -49,6 +52,7 @@ class BaseContentViewSet(viewsets.ModelViewSet):
             )
         )
 
+# Comic ViewSet
 class ComicViewSet(BaseContentViewSet):
     queryset = Comic.objects.all()
     serializer_class = ComicSerializer
@@ -85,6 +89,7 @@ class ComicViewSet(BaseContentViewSet):
         
         return Response(self.get_serializer(recommended, many=True).data)
 
+# Novel ViewSet
 class NovelViewSet(BaseContentViewSet):
     queryset = Novel.objects.all()
     serializer_class = NovelSerializer
